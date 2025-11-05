@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/overview" />,
+        element: <Navigate to="/admin/overview"/>,
       },
       ...generateRoutes(adminSidebarItems),
     ],
