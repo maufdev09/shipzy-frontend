@@ -15,9 +15,7 @@ export default function AboutUs() {
                 reliably. Our platform connects senders and receivers through a
                 transparent and efficient delivery network. Every shipment is
                 tracked in real-time, ensuring complete visibility from pickup
-                to delivery. With a dedicated support team and modern logistics
-                technology, we aim to make every delivery experience smooth,
-                secure, and stress-free.
+                to delivery.
               </p>
               <a
                 href="javascript:void(0);"
