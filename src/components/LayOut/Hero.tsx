@@ -22,7 +22,7 @@ const props ={
     },
   },
   image :{
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
+    src: "",
     alt: "Hero section demo image showing interface components",
   },
 }
