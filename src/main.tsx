@@ -15,7 +15,10 @@ createRoot(document.getElementById('root')!).render(
 
      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       
+    <div className=' container mx-auto'>
     <RouterProvider router={router}/>
+      
+    </div>
             <Toaster richColors />
 
     </ThemeProvider>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,7 +30,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -109,14 +109,12 @@ const [register] = useRegisterMutation();
     const { confirmPassword, ...userData } = data;
     void confirmPassword;
     try {
-      const result = await register(userData).unwrap();
-      console.log("Registration successful:", result);
+       await register(userData).unwrap();
       toast.success("Registration successful!");
 
       // Reset form
       form.reset();
     } catch (error) {
-      console.log("Registration failed:", error);
       toast.error("Registration failed.");
     }
   };
@@ -235,7 +233,6 @@ const [register] = useRegisterMutation();
               />
 
               <Button
-                onClick={() => console.log("Button clicked!")}
                 type="submit"
                 className=" w-full"
               >

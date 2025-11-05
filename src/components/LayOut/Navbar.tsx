@@ -1,43 +1,48 @@
-import Logo from "@/assets/icons/Logo"
-import { Button } from "@/components/ui/button"
+import Logo from "@/assets/icons/Logo";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  
   NavigationMenuLink,
-  
   NavigationMenuList,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { ModeToggle } from "./mode-toggle"
-import { Link,  useNavigate } from "react-router"
-import {  authApi, useLogOutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
-import { useAppDispatch } from "@/redux/hook"
-import { toast } from "sonner"
+} from "@/components/ui/popover";
+import { ModeToggle } from "./mode-toggle";
+import { Link } from "react-router";
+import {
+  authApi,
+  useLogOutMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
+import { toast } from "sonner";
+import { Role } from "@/constants/role";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "/", label: "Home",  },
-
-]
+  { href: "/", label: "Home", role: "PUBLIC" },
+  { href: "/admin", label: "Admin", role: Role.ADMIN },
+  { href: "/sender", label: "Sender", role: Role.SENDER },
+  { href: "/recivier", label: "Receiver", role: Role.RECEIVER },
+  { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/Contact-Us", label: "ContactUs", role: "PUBLIC" },
+];
 
 export default function Navbar() {
-const {data}= useUserInfoQuery(undefined)
-const [logOut]= useLogOutMutation()
-const dispatch= useAppDispatch()
+  const [logOut] = useLogOutMutation();
+  const dispatch = useAppDispatch();
+  const { data } = useUserInfoQuery(undefined);
 
-console.log(data?.data);
 
-const handleLogout=()=>{
-  logOut(undefined)
-  toast.success("Logout successful!");
-  dispatch(authApi.util.resetApiState())
-
-}
+  const handleLogout = async() => {
+    await logOut(undefined);
+    dispatch(authApi.util.resetApiState());
+    toast.success("Logout successfully")
+  };
   return (
     <header className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
@@ -82,18 +87,32 @@ const handleLogout=()=>{
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink
-                       asChild
-                        className="py-1.5"
-                      >
-                      <Link className="py-1.5 font-medium text-muted-foreground hover:text-primary" to={link.href}>
-                        {link.label}
-                      </Link>
-                      
-                      </NavigationMenuLink>
-
-                    </NavigationMenuItem>
+                    <>
+                      {link.role === "PUBLIC" && (
+                        <NavigationMenuItem key={index} className="w-full">
+                          <NavigationMenuLink asChild className="py-1.5">
+                            <Link
+                              className="py-1.5 font-medium text-muted-foreground hover:text-primary"
+                              to={link.href}
+                            >
+                              {link.label}
+                            </Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                      {link.role === data?.data?.role && (
+                        <NavigationMenuItem key={index} className="w-full">
+                          <NavigationMenuLink asChild className="py-1.5">
+                            <Link
+                              className="py-1.5 font-medium text-muted-foreground hover:text-primary"
+                              to={link.href}
+                            >
+                              {link.label}
+                            </Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                    </>
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -108,12 +127,30 @@ const handleLogout=()=>{
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
-                  
-                   <Link className="py-1.5 font-medium text-muted-foreground hover:text-primary" to={link.href}>
-                        {link.label}
-                      </Link>f
-                  </NavigationMenuItem>
+                            <NavigationMenuItem key={index} className="w-full">
+                       <>
+                      {link.role === "PUBLIC" && (
+                          <NavigationMenuLink asChild className="py-1.5">
+                            <Link
+                      className="py-1.5 font-medium text-muted-foreground hover:text-primary"
+                              to={link.href}
+                            >
+                              {link.label}
+                            </Link>
+                          </NavigationMenuLink>
+                      )}
+                      {link.role === data?.data?.role && (
+                          <NavigationMenuLink asChild className="py-1.5">
+                            <Link
+                      className="py-1.5 font-medium text-muted-foreground hover:text-primary"
+                              to={link.href}
+                            >
+                              {link.label}
+                            </Link>
+                          </NavigationMenuLink>
+                      )}
+                    </>
+                      </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
@@ -122,22 +159,19 @@ const handleLogout=()=>{
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-        <ModeToggle />
-        {
-          data?.data?.email&&
-        
-        
-            (<Button onClick={handleLogout}  size="sm" className="text-sm">
-          Logout
-          </Button>)
-}{!data?.data?.email&&
-           (<Button asChild size="sm" className="text-sm">
-          <Link to={"/login"}>Login</Link>
-          </Button>)
-       
-}
+          <ModeToggle />
+          {data?.data?.email && (
+            <Button onClick={handleLogout} size="sm" className="text-sm">
+              Logout
+            </Button>
+          )}
+          {!data?.data?.email && (
+            <Button asChild size="sm" className="text-sm">
+              <Link to={"/login"}>Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
-  )
+  );
 }

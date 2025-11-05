@@ -10,7 +10,7 @@ export interface IsidevarItem {
     }[]
 }
 
-export type IRole = "SUPER_ADMIN" | "ADMIN" | "USER";
+export type IRole = "ADMIN" | "SENDER" | "RECEIVER";
 
 
 type ZodIssue = {

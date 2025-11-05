@@ -33,6 +33,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { config } from "@/config";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   email: z
@@ -49,30 +50,34 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+    const navigate = useNavigate();
   const [login] = useLoginMutation();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "marufdev06@gmail.com",
-      password: "Maruf6589@",
+      email: "marufdev10@gmail.com",
+      password: "marufdev90@gmail.com",
     },
   });
 
   const onSubmit = async (data: any) => {
     try {
       const result = await login(data).unwrap();
-      console.log("Login successful:", result);
-      toast.success("Login successful!");
+  
+     if (result.success){
+      toast.success("Login successful");
+      navigate("/");
+}
 
       // Reset form
       form.reset();
     } catch (error) {
-      console.log("Login failed:", error);
+    
       toast.error("Login failed.");
     }
 
-    console.log(data);
+   
   };
 
   return (
@@ -125,7 +130,7 @@ export function LoginForm({
               />
 
               <Button
-                onClick={() => console.log("Button clicked!")}
+              
                 type="submit"
                 className=" w-full"
               >

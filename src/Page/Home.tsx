@@ -1,9 +1,15 @@
-import React from 'react'
+import { ChoseSection } from '@/components/LayOut/choseSection'
+import { ContactUS } from '@/components/LayOut/ContactUs'
+import { Faq } from '@/components/LayOut/Faq'
+import { Hero } from '@/components/LayOut/Hero'
 
 export default function Home() {
   return (
     <div>
-        Home Page   
+        <Hero></Hero>   
+        <ChoseSection></ChoseSection>
+        <ContactUS></ContactUS>
+        <Faq></Faq>
     </div>
   )
 }
