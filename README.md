@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# Shipzy Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project overview
+- Shipzy is a React + TypeScript single-page app bootstrapped with Vite. It provides UIs for Admin, Sender, and Receiver roles (dashboards, parcel creation/management, tracking, and charts).
 
-Currently, two official plugins are available:
+Setup instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repo and install dependencies:
+   ```sh
+   git clone <repo-url>
+   cd shipzy-frontend
+   npm install
 
-## React Compiler
+2. Create environment variables:
+Copy .env.example or create .env at project root and set API URL and other secrets. See src/config/index.ts for usage.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+3. Run the dev server:
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4.Build and preview:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+npm run build
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+5. Deploy:
+This repo includes a Vercel config: vercel.json. You can deploy by connecting the repository to Vercel and ensuring the environment variables are set in the Vercel dashboard. The rewrite in vercel.json serves index.html for client-side routing.
+Technology stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Framework: React (see src/main.tsx)
+Language: TypeScript
+Bundler / Dev: Vite (see vite.config.ts)
+Styling: Tailwind CSS (imported in src/index.css)
+State & API: Redux Toolkit Query with a shared base api (src/redux/baseApi.ts)
+Charts: Recharts (used in several admin components)
+UI primitives: Radix + custom components under src/components/ui
+Icons: lucide-react
+Routing: React Router (app router defined in src/routes/index.tsx)
+Live URL (if deployed)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Not available from workspace files. If deployed via Vercel, check your Vercel project dashboard. The repo includes deployment config at vercel.json.
+Other relevant notes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+API base URL is read from env and surfaced in src/config/index.ts via config.
+Routes are generated from sidebar data using generateRoutes. The app router is exposed as router.
+Theme handling uses the ThemeProvider used in src/main.tsx.
+RTK Query base API is baseApi — endpoint modules inject onto this.
+Ensure environment variables in .env match what the backend expects (see src/config/index.ts).
+If you use Vercel, verify the rewrite in vercel.json is desired for SPA routing.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
