@@ -66,18 +66,14 @@ export default function UserUpdateDailog({ id }:any) {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Edit profile</DialogTitle>
-              <DialogDescription>
-                Make changes to your profile here. Click save when you&apos;re
-                done.
-              </DialogDescription>
+              <DialogTitle>Uodate profile</DialogTitle>
+             
             </DialogHeader>
             <FormField
               control={form.control}
               name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Login As a sender or receiver</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
