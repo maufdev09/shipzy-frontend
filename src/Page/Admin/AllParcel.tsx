@@ -15,12 +15,14 @@ import { ParcelConfirmDialog } from "@/components/modules/parcel/parcelConfirmDa
 import { ParcelStatusLog } from "@/components/modules/parcel/parcelStatusLog";
 
 export default function allParcel() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isLoading, error } = useAllParcelQuery(undefined);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading parcels</div>;
 
 
+console.log(data);
 
 
 

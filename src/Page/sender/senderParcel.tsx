@@ -42,7 +42,7 @@ export default function senderParcel() {
               <TableCell>{Parcel?.type}</TableCell>
               <TableCell>{Parcel?.trackingId}</TableCell>
               <TableCell>{Parcel?.status}</TableCell>
-              <TableCell>{Parcel?.sender.name}</TableCell>
+              <TableCell>{Parcel?.sender}</TableCell>
               <TableCell>{Parcel?.receiverAddress}</TableCell>
               <TableCell>{Parcel?.fee}</TableCell>
               <TableCell>

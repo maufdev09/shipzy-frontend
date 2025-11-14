@@ -33,6 +33,15 @@ export const parcelApi = baseApi.injectEndpoints({
       }),
 
     }),
+    parcelTracking: builder.query({
+       query: (trackingId) => ({
+        url: `parcels/parcelTrack/${trackingId}`,
+        method: "GET",
+        data: trackingId,
+        
+      }),
+
+    }),
     ParcelIncoming: builder.query({
       query: () => ({
         url: "/parcels/incoming",
@@ -84,6 +93,7 @@ export const {
   useAllParcelQuery,
   useParcelStatusQuery,
   useGetParcelOverviewQuery,
-  useGetStatusDistrubutionQuery
+  useGetStatusDistrubutionQuery,
+  useParcelTrackingQuery,
  
 } = parcelApi;

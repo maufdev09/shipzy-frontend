@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 
 
@@ -18,7 +19,7 @@ const props ={
     },
     secondary: {
       text: "Track a Parcel",
-      url: "/track",
+      url: "/track-parcel",
     },
   },
   image :{
@@ -48,15 +49,15 @@ const props ={
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
               {props?.buttons.primary && (
                 <Button asChild className="w-full sm:w-auto">
-                  <a href={props?.buttons.primary.url}>{props?.buttons.primary.text}</a>
+                  <Link to={props?.buttons.primary.url}>{props?.buttons.primary.text}</Link>
                 </Button>
               )}
               {props?.buttons.secondary && (
                 <Button asChild variant="outline" className="w-full sm:w-auto">
-                  <a href={props?.buttons.secondary.url}>
+                  <Link to={props?.buttons.secondary.url}>
                     {props?.buttons.secondary.text}
                     <ArrowRight className="size-4" />
-                  </a>
+                  </Link>
                 </Button>
               )}
             </div>

@@ -14,6 +14,7 @@ import { Role } from "@/constants/role";
 import type { IRole } from "@/types";
 import AboutUs from "@/Page/AboutUs";
 import { ContactUS } from "@/components/LayOut/ContactUs";
+import TrackParcel from "@/Page/TrackParce";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         Component: ContactUS,
         path:"/Contact-Us"
+      },
+      {
+        Component: TrackParcel,
+        path:"/track-parcel"
       },
     ],
   },

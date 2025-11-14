@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -16,7 +15,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 
@@ -62,10 +60,10 @@ export default function UserUpdateDailog({ id }:any) {
           <PackageCheck />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] ">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <DialogHeader>
+            <DialogHeader className="my-6">
               <DialogTitle>Uodate profile</DialogTitle>
              
             </DialogHeader>
@@ -79,7 +77,7 @@ export default function UserUpdateDailog({ id }:any) {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full mb-5">
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                     </FormControl>

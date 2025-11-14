@@ -33,7 +33,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { config } from "@/config";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const formSchema = z.object({
   email: z
@@ -161,7 +161,7 @@ export function LoginForm({
 
               <Field>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="#">Sign up</a>
+                  Don&apos;t have an account? <Link to="/register">Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

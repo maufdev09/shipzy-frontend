@@ -37,9 +37,7 @@ export function ParcelCancelDialog({ id }: { id: string }) {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-            {id}
+            This action will cancel the parcel with ID: {id}.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

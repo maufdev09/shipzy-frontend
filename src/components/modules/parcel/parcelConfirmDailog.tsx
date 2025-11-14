@@ -34,11 +34,9 @@ export function ParcelConfirmDialog({ id }: { id: string }) {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Confirm Parcel</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-            {id}
+            This action cannot be undone. Confirm parcel with ID: {id}.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

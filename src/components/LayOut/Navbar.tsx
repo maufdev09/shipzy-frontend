@@ -35,7 +35,7 @@ const navigationLinks = [
 export default function Navbar() {
   const [logOut] = useLogOutMutation();
   const dispatch = useAppDispatch();
-  const { data } = useUserInfoQuery(undefined);
+  const { data } = useUserInfoQuery(undefined,);
 
 
   const handleLogout = async() => {
@@ -120,7 +120,7 @@ export default function Navbar() {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90">
+            <a href="/" className="text-primary hover:text-primary/90">
               <Logo />
             </a>
             {/* Navigation menu */}
